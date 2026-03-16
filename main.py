@@ -5,11 +5,17 @@ from report import generate_report
 from restore import parse_report, restore_files
 
 
+def show_progress(current, total, file_path):
+    percent = (current / total) * 100
+    print(f"\rHashing files: {current}/{total} ({percent:.1f}%) - {file_path.name}", end="")
+
+
 def run_duplicate_cleanup():
     folder = input("Enter the folder path to scan: ").strip()
 
     files = scan_folder(folder)
-    duplicates = find_duplicates(files)
+    duplicates = find_duplicates(files, progress_callback=show_progress)
+    print()
 
     print(f"\nFiles scanned: {len(files)}")
     print(f"Duplicate groups found: {len(duplicates)}")
