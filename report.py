@@ -25,7 +25,7 @@ def generate_report(root_path, total_files_scanned, duplicate_groups, moved_file
     root_path = Path(root_path)
     review_folder = Path(review_folder)
 
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     report_path = root_path / f"duplicate_report_{timestamp}.txt"
 
     total_moved = len(moved_files)
